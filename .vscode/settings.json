@@ -1,0 +1,21 @@
+{
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.tabSize": 2,
+    "editor.useTabStops": true,
+    "editor.tabCompletion": "on",
+    "explorer.compactFolders": false,
+    "workbench.tree.indent": 20,
+    "workbench.tree.expandMode": "doubleClick",
+    "workbench.tree.renderIndentGuides": "always",
+    "workbench.list.openMode": "doubleClick",
+    "clang-format.executable": "clang-format",
+    "C_Cpp.default.cStandard": "c11",
+    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        ".clang-format": "yaml",
+        "string_view": "cpp"
+    }
+}
