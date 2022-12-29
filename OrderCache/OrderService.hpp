@@ -9,10 +9,18 @@ namespace TechnicalTest
   class OrderService
   {
     public:
+      OrderService() noexcept;
+
       // clang-format off
+
+     // add order to the cache
+      void AddOrder(Order&& order);
 
       // add order to the cache
       void AddOrder(const Order& order);
+
+      // verifies that the order by order id exists
+      bool ExistsOrderId(const std::string_view order_id) const noexcept;
 
       // remove order with this unique order id from the cache
       void CancelOrder(const std::string_view& order_id);
@@ -28,6 +36,12 @@ namespace TechnicalTest
 
       // return all orders in cache in a vector
       const std::vector<Order>& GetAllOrders() const noexcept;
+
+      // total amount of orders
+      size_t TotalOrders() const noexcept;
+
+      // search for an order by id
+      std::optional<Order> FindOrderById(const std::string_view order_id) const noexcept;
 
       // clang-format on
 

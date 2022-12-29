@@ -20,6 +20,7 @@ target_sources(OrderCache
         ${CMAKE_CURRENT_SOURCE_DIR}/Order.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/Order.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/Helpers.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/Helpers.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/OrderException.hpp
 )
 

@@ -2,12 +2,6 @@
 
 namespace TechnicalTest
 {
-  Order::Order(const std::string& order_id, const std::string& security_id)
-    : m_OrderId{ order_id }
-    , m_SecurityId{ security_id }
-  {
-  }
-
   Order::Order(const std::string& order_id, const std::string& security_id, const std::string& side, const uint32_t qty, const std::string& user, const std::string& company)
     : m_OrderId{ order_id }
     , m_SecurityId{ security_id }

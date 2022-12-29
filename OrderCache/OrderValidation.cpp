@@ -5,30 +5,26 @@
 
 namespace TechnicalTest
 {
-  CreateOrderValidation::CreateOrderValidation(const OrderRepository& order_repository) noexcept
+  CreateOrderValidation::CreateOrderValidation(const IOrderCache& order_repository) noexcept
     : m_OrderRepository{ order_repository }
     , m_ErrorMessages{}
   {
   }
 
-  bool CreateOrderValidation::IsValid(const Order& order) const noexcept
+  bool CreateOrderValidation::IsValid(const Order& order) noexcept
   {
     m_ErrorMessages.clear();
-
-    return ValidateOrderId(order)    //
-        && ValidateSecurityId(order) //
-        && ValidateSide(order)       //
-        && ValidateUser(order)       //
-        && ValidateCompany(order)    //
-        && ValidateQty(order);
+    return [&](const auto... results) { //
+      return (results && ...);
+    }(ValidateOrderId(order), ValidateSecurityId(order), ValidateSide(order), ValidateUser(order), ValidateCompany(order), ValidateQty(order));
   }
 
-  const CreateOrderValidation::error_message_t& CreateOrderValidation::ErrorMessages() const noexcept
+  CreateOrderValidation::error_message_t& CreateOrderValidation::Errors() noexcept
   {
     return m_ErrorMessages;
   }
 
-  bool CreateOrderValidation::ValidateOrderId(const Order& order) const noexcept
+  bool CreateOrderValidation::ValidateOrderId(const Order& order) noexcept
   {
     m_ErrorMessages["OrderId"].clear();
 
@@ -45,7 +41,7 @@ namespace TechnicalTest
     return m_ErrorMessages["OrderId"].empty();
   }
 
-  bool CreateOrderValidation::ValidateSecurityId(const Order& order) const noexcept
+  bool CreateOrderValidation::ValidateSecurityId(const Order& order) noexcept
   {
     m_ErrorMessages["SecurityId"].clear();
 
@@ -57,7 +53,7 @@ namespace TechnicalTest
     return m_ErrorMessages["SecurityId"].empty();
   }
 
-  bool CreateOrderValidation::ValidateSide(const Order& order) const noexcept
+  bool CreateOrderValidation::ValidateSide(const Order& order) noexcept
   {
     m_ErrorMessages["Side"].clear();
 
@@ -66,8 +62,8 @@ namespace TechnicalTest
       m_ErrorMessages["Side"].emplace_back("The side is required.");
     }
 
-    if ( !StringCompareIgnoreCase(order.Side(), "Buy") || //
-         !StringCompareIgnoreCase(order.Side(), "Sell") )
+    if ( !StringEquals(order.Side(), "Buy") && //
+         !StringEquals(order.Side(), "Sell") )
     {
       m_ErrorMessages["Side"].emplace_back("The side must be \"Buy\" or \"Sell\".");
     }
@@ -75,7 +71,7 @@ namespace TechnicalTest
     return m_ErrorMessages["Side"].empty();
   }
 
-  bool CreateOrderValidation::ValidateUser(const Order& order) const noexcept
+  bool CreateOrderValidation::ValidateUser(const Order& order) noexcept
   {
     m_ErrorMessages["User"].clear();
 
@@ -87,7 +83,7 @@ namespace TechnicalTest
     return m_ErrorMessages["User"].empty();
   }
 
-  bool CreateOrderValidation::ValidateCompany(const Order& order) const noexcept
+  bool CreateOrderValidation::ValidateCompany(const Order& order) noexcept
   {
     m_ErrorMessages["Company"].clear();
 
@@ -99,7 +95,7 @@ namespace TechnicalTest
     return m_ErrorMessages["Company"].empty();
   }
 
-  bool CreateOrderValidation::ValidateQty(const Order& order) const noexcept
+  bool CreateOrderValidation::ValidateQty(const Order& order) noexcept
   {
     return true;
   }

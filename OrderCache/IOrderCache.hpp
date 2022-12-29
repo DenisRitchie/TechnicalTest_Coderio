@@ -2,6 +2,8 @@
 #define D6199F1F_B755_4213_8E10_0ED2482367CD
 
 #include <vector>
+#include <optional>
+
 #include "Order.hpp"
 
 namespace TechnicalTest
@@ -13,6 +15,9 @@ namespace TechnicalTest
   {
       // implememnt the 6 methods below, do not alter signatures
       // clang-format off
+
+      // add order to the cache
+      virtual void AddOrder(Order&& order) = 0;
 
       // add order to the cache
       virtual void AddOrder(const Order& order) = 0;
@@ -35,6 +40,11 @@ namespace TechnicalTest
       // return all orders in cache in a vector
       virtual const std::vector<Order>& GetAllOrders() const = 0;
 
+      // total amount of orders
+      virtual size_t TotalOrders() const noexcept = 0;
+
+      // search for an order by id
+      virtual std::optional<Order> FindOrderById(const std::string_view order_id) const noexcept = 0;
       // clang-format on
   };
 } // namespace TechnicalTest

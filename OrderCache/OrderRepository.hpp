@@ -11,10 +11,13 @@ namespace TechnicalTest
       // clang-format off
 
       // add order to the cache
+      virtual void AddOrder(Order&& order) override;
+
+      // add order to the cache
       virtual void AddOrder(const Order& order) override;
 
       // verifies that the order by order id exists
-      virtual bool ExistsOrderId(const std::string_view order_id) const noexcept  = 0;
+      virtual bool ExistsOrderId(const std::string_view order_id) const noexcept override;
 
       // remove order with this unique order id from the cache
       virtual void CancelOrder(const std::string_view& order_id) override;
@@ -30,6 +33,12 @@ namespace TechnicalTest
 
       // return all orders in cache in a vector
       virtual const std::vector<Order>& GetAllOrders() const override;
+
+      // total amount of orders
+      virtual size_t TotalOrders() const noexcept override;
+
+      // search for an order by id
+      virtual std::optional<Order> FindOrderById(const std::string_view order_id) const noexcept override;
 
       // clang-format on
 

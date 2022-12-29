@@ -3,6 +3,28 @@
 
 namespace TechnicalTest
 {
+  OrderService::OrderService() noexcept
+    : m_OrderRepository{}
+    , m_CreateOrderValidation{ m_OrderRepository }
+  {
+  }
+
+  // add order to the cache
+  void OrderService::AddOrder(Order&& order)
+  {
+    if ( m_CreateOrderValidation.IsValid(order) )
+    {
+      m_OrderRepository.AddOrder(std::move(order));
+    }
+    else
+    {
+      throw OrderException(
+          "Order model validation error.", //
+          std::move(const_cast<CreateOrderValidation::error_message_t&>(m_CreateOrderValidation.ErrorMessages()))
+      );
+    }
+  }
+
   // add order to the cache
   void OrderService::AddOrder(const Order& order)
   {
@@ -17,6 +39,17 @@ namespace TechnicalTest
           std::move(const_cast<CreateOrderValidation::error_message_t&>(m_CreateOrderValidation.ErrorMessages()))
       );
     }
+  }
+
+  // verifies that the order by order id exists
+  bool OrderService::ExistsOrderId(const std::string_view order_id) const noexcept
+  {
+    if ( order_id.empty() )
+    {
+      throw OrderException("The order id is required.");
+    }
+
+    return m_OrderRepository.ExistsOrderId(order_id);
   }
 
   // remove order with this unique order id from the cache
@@ -67,5 +100,22 @@ namespace TechnicalTest
   const std::vector<Order>& OrderService::GetAllOrders() const noexcept
   {
     return m_OrderRepository.GetAllOrders();
+  }
+
+  // total amount of orders
+  size_t OrderService::TotalOrders() const noexcept
+  {
+    return m_OrderRepository.TotalOrders();
+  }
+
+  // search for an order by id
+  std::optional<Order> OrderService::FindOrderById(const std::string_view order_id) const noexcept
+  {
+    if ( order_id.empty() )
+    {
+      throw OrderException("The order id is required.");
+    }
+
+    return m_OrderRepository.FindOrderById(order_id);
   }
 } // namespace TechnicalTest

@@ -12,22 +12,22 @@ namespace TechnicalTest
     public:
       using error_message_t = std::unordered_map<std::string, std::vector<std::string>>;
 
-      CreateOrderValidation(const OrderRepository& order_repository) noexcept;
-      const error_message_t& ErrorMessages() const noexcept;
+      CreateOrderValidation(const IOrderCache& order_repository) noexcept;
+      error_message_t& Errors() noexcept;
 
       // clang-format off
-      bool IsValid(const Order& order) const noexcept;
-      bool ValidateOrderId(const Order& order) const noexcept;
-      bool ValidateSecurityId(const Order& order) const noexcept;
-      bool ValidateSide(const Order& order) const noexcept;
-      bool ValidateUser(const Order& order) const noexcept;
-      bool ValidateCompany(const Order& order) const noexcept;
-      bool ValidateQty(const Order& order) const noexcept;
+      bool IsValid(const Order& order) noexcept;
+      bool ValidateOrderId(const Order& order) noexcept;
+      bool ValidateSecurityId(const Order& order) noexcept;
+      bool ValidateSide(const Order& order) noexcept;
+      bool ValidateUser(const Order& order) noexcept;
+      bool ValidateCompany(const Order& order) noexcept;
+      bool ValidateQty(const Order& order) noexcept;
       // clang-format on
 
     private:
-      mutable error_message_t m_ErrorMessages;
-      const OrderRepository&  m_OrderRepository;
+      error_message_t    m_ErrorMessages;
+      const IOrderCache& m_OrderRepository;
   };
 }; // namespace TechnicalTest
 

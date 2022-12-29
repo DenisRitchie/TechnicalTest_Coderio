@@ -12,7 +12,6 @@ namespace TechnicalTest
   {
     public:
       Order() = default;
-      Order(const std::string& order_id, const std::string& security_id);
       Order(const std::string& order_id, const std::string& security_id, const std::string& side, const uint32_t qty, const std::string& user, const std::string& company);
 
       // clang-format off
