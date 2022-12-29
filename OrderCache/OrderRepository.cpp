@@ -113,7 +113,7 @@ namespace TechnicalTest
     std::vector<std::tuple<std::string_view, uint32_t>> buys;
     std::vector<std::tuple<std::string_view, uint32_t>> sells;
 
-    for ( int32_t index = 0; index < m_Orders.size(); ++index )
+    for ( size_t index = 0; index < m_Orders.size(); ++index )
     {
       if ( m_Orders[index].SecurityId() == security_id )
       {

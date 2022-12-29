@@ -21,9 +21,9 @@ namespace
       OrderRepositoryMock(const bool exists_order_id_method_return)
       {
         ON_CALL(*this, ExistsOrderId)
-            .WillByDefault(                                                            //
-                [this, exists_order_id_method_return](const std::string_view order_id) //
-                {                                                                      //
+            .WillByDefault(                                                                             //
+                [this, exists_order_id_method_return]([[maybe_unused]] const std::string_view order_id) //
+                {                                                                                       //
                   return exists_order_id_method_return;
                 }
             );

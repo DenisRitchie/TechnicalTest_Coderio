@@ -20,8 +20,8 @@ namespace TechnicalTest
 
   int32_t StringCompareIgnoreCase(const std::string_view str1, const std::string_view str2) noexcept
   {
-    const unsigned char* s1 = (const unsigned char*)str1.cbegin();
-    const unsigned char* s2 = (const unsigned char*)str2.cbegin();
+    const unsigned char* s1 = (const unsigned char*)str1.data();
+    const unsigned char* s2 = (const unsigned char*)str2.data();
     unsigned char        c1, c2;
 
     do

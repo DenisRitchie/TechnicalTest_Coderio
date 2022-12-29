@@ -26,8 +26,8 @@ namespace TechnicalTest
       // clang-format on
 
     private:
-      error_message_t    m_ErrorMessages;
       const IOrderCache& m_OrderRepository;
+      error_message_t    m_ErrorMessages;
   };
 }; // namespace TechnicalTest
 

@@ -91,7 +91,7 @@ TEST_F(OrderRepositoryTests, AddOrder_TestData1)
 {
   EXPECT_EQ(m_Repository1.TotalOrders(), 13);
 
-  for ( int32_t index = 1; index <= m_Repository1.TotalOrders(); ++index )
+  for ( size_t index = 1; index <= m_Repository1.TotalOrders(); ++index )
   {
     EXPECT_NE(m_Repository1.FindOrderById("OrdId"s + std::to_string(index)), std::nullopt);
   }
@@ -101,7 +101,7 @@ TEST_F(OrderRepositoryTests, AddOrder_TestData2)
 {
   EXPECT_EQ(m_Repository2.TotalOrders(), 11);
 
-  for ( int32_t index = 1; index <= m_Repository2.TotalOrders(); ++index )
+  for ( size_t index = 1; index <= m_Repository2.TotalOrders(); ++index )
   {
     EXPECT_NE(m_Repository2.FindOrderById("OrdId"s + std::to_string(index)), std::nullopt);
   }
@@ -111,7 +111,7 @@ TEST_F(OrderRepositoryTests, AddOrder_TestData3)
 {
   EXPECT_EQ(m_Repository3.TotalOrders(), 8);
 
-  for ( int32_t index = 1; index <= m_Repository3.TotalOrders(); ++index )
+  for ( size_t index = 1; index <= m_Repository3.TotalOrders(); ++index )
   {
     EXPECT_TRUE(m_Repository3.ExistsOrderId("OrdId"s + std::to_string(index)));
   }

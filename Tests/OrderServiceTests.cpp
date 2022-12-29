@@ -92,7 +92,7 @@ TEST_F(OrderServiceTests, AddOrder_TestData1)
 {
   EXPECT_EQ(m_Service1.TotalOrders(), 13);
 
-  for ( int32_t index = 1; index <= m_Service1.TotalOrders(); ++index )
+  for ( size_t index = 1; index <= m_Service1.TotalOrders(); ++index )
   {
     EXPECT_NE(m_Service1.FindOrderById("OrdId"s + std::to_string(index)), std::nullopt);
   }
@@ -102,7 +102,7 @@ TEST_F(OrderServiceTests, AddOrder_TestData2)
 {
   EXPECT_EQ(m_Service2.TotalOrders(), 11);
 
-  for ( int32_t index = 1; index <= m_Service2.TotalOrders(); ++index )
+  for ( size_t index = 1; index <= m_Service2.TotalOrders(); ++index )
   {
     EXPECT_NE(m_Service2.FindOrderById("OrdId"s + std::to_string(index)), std::nullopt);
   }
@@ -112,7 +112,7 @@ TEST_F(OrderServiceTests, AddOrder_TestData3)
 {
   EXPECT_EQ(m_Service3.TotalOrders(), 8);
 
-  for ( int32_t index = 1; index <= m_Service3.TotalOrders(); ++index )
+  for ( size_t index = 1; index <= m_Service3.TotalOrders(); ++index )
   {
     EXPECT_TRUE(m_Service3.ExistsOrderId("OrdId"s + std::to_string(index)));
   }

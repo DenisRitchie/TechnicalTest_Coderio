@@ -95,7 +95,7 @@ namespace TechnicalTest
     return m_ErrorMessages["Company"].empty();
   }
 
-  bool CreateOrderValidation::ValidateQty(const Order& order) noexcept
+  bool CreateOrderValidation::ValidateQty([[maybe_unused]] const Order& order) noexcept
   {
     return true;
   }

@@ -51,6 +51,25 @@ target_compile_features(${TEST_PROJECT_NAME} PUBLIC c_std_11 cxx_std_17)
 include(GoogleTest)
 gtest_discover_tests(${TEST_PROJECT_NAME} TEST_PREFIX TechnicalTest)
 
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Data/TestData1.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/Data)
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Data/TestData2.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/Data)
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/Data/TestData3.txt DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/Data)
+set_target_properties(${TEST_PROJECT_NAME}
+    PROPERTIES
+        ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/output/bin"
+        LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/output/bin"
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/output/bin"
+)
+
+if (MSVC)
+    add_custom_command(
+        TARGET ${TEST_PROJECT_NAME} POST_BUILD
+        COMMAND "${CMAKE_COMMAND}" -E copy_if_different "${CMAKE_CURRENT_SOURCE_DIR}/Data/TestData1.txt" "${CMAKE_BINARY_DIR}/output/bin/$<CONFIG>/Data/TestData1.txt"
+        COMMAND "${CMAKE_COMMAND}" -E copy_if_different "${CMAKE_CURRENT_SOURCE_DIR}/Data/TestData2.txt" "${CMAKE_BINARY_DIR}/output/bin/$<CONFIG>/Data/TestData2.txt"
+        COMMAND "${CMAKE_COMMAND}" -E copy_if_different "${CMAKE_CURRENT_SOURCE_DIR}/Data/TestData3.txt" "${CMAKE_BINARY_DIR}/output/bin/$<CONFIG>/Data/TestData3.txt"
+    )
+else()
+    add_custom_command(
+        TARGET ${TEST_PROJECT_NAME} POST_BUILD
+        COMMAND "${CMAKE_COMMAND}" -E copy_if_different "${CMAKE_CURRENT_SOURCE_DIR}/Data/TestData1.txt" "${CMAKE_BINARY_DIR}/output/bin/Data/TestData1.txt"
+        COMMAND "${CMAKE_COMMAND}" -E copy_if_different "${CMAKE_CURRENT_SOURCE_DIR}/Data/TestData2.txt" "${CMAKE_BINARY_DIR}/output/bin/Data/TestData2.txt"
+        COMMAND "${CMAKE_COMMAND}" -E copy_if_different "${CMAKE_CURRENT_SOURCE_DIR}/Data/TestData3.txt" "${CMAKE_BINARY_DIR}/output/bin/Data/TestData3.txt"
+    )
+endif()
