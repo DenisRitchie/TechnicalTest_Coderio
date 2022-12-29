@@ -11,57 +11,33 @@ namespace TechnicalTest
   class Order
   {
     public:
-      // do not alter signature of this constructor
-      Order(const std::string& ordId, const std::string& secId, const std::string& side, const unsigned int qty, const std::string& user, const std::string& company)
-        : m_orderId(ordId)
-        , m_securityId(secId)
-        , m_side(side)
-        , m_qty(qty)
-        , m_user(user)
-        , m_company(company)
-      {
-      }
+      Order() = default;
+      Order(const std::string& order_id, const std::string& security_id);
+      Order(const std::string& order_id, const std::string& security_id, const std::string& side, const uint32_t qty, const std::string& user, const std::string& company);
 
-      // do not alter these accessor methods
-      std::string orderId() const
-      {
-        return m_orderId;
-      }
+      // clang-format off
+      Order& OrderId(const std::string_view order_id) noexcept;
+      Order& SecurityId(const std::string_view security_id) noexcept;
+      Order& Side(const std::string_view side) noexcept;
+      Order& User(const std::string_view user) noexcept;
+      Order& Company(const std::string_view company) noexcept;
+      Order& Qty(const uint32_t qty) noexcept;
+      // clang-format on
 
-      std::string securityId() const
-      {
-        return m_securityId;
-      }
-
-      std::string side() const
-      {
-        return m_side;
-      }
-
-      std::string user() const
-      {
-        return m_user;
-      }
-
-      std::string company() const
-      {
-        return m_company;
-      }
-
-      unsigned int qty() const
-      {
-        return m_qty;
-      }
+      [[nodiscard]] std::string_view OrderId() const noexcept;
+      [[nodiscard]] std::string_view SecurityId() const noexcept;
+      [[nodiscard]] std::string_view Side() const noexcept;
+      [[nodiscard]] std::string_view User() const noexcept;
+      [[nodiscard]] std::string_view Company() const noexcept;
+      [[nodiscard]] uint32_t         Qty() const noexcept;
 
     private:
-      // use the below to hold the order data
-      // do not remove the these member variables
-      std::string  m_orderId;    // unique order id
-      std::string  m_securityId; // security identifier
-      std::string  m_side;       // side of the order, eg Buy or Sell
-      unsigned int m_qty;        // qty for this order
-      std::string  m_user;       // user name who owns this order
-      std::string  m_company;    // company for user
+      std::string m_OrderId;    // unique order id
+      std::string m_SecurityId; // security identifier
+      std::string m_Side;       // side of the order, eg Buy or Sell
+      uint32_t    m_Qty;        // qty for this order
+      std::string m_User;       // user name who owns this order
+      std::string m_Company;    // company for user
   };
 } // namespace TechnicalTest
 

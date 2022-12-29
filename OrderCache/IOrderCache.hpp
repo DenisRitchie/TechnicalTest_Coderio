@@ -12,24 +12,30 @@ namespace TechnicalTest
   struct IOrderCache
   {
       // implememnt the 6 methods below, do not alter signatures
+      // clang-format off
 
       // add order to the cache
-      virtual void               addOrder(Order order)                                                                  = 0;
+      virtual void AddOrder(const Order& order) = 0;
+
+      // verifies that the order by order id exists
+      virtual bool ExistsOrderId(const std::string_view order_id) const noexcept = 0;
 
       // remove order with this unique order id from the cache
-      virtual void               cancelOrder(const std::string& orderId)                                                = 0;
+      virtual void CancelOrder(const std::string_view& order_id) = 0;
 
       // remove all orders in the cache for this user
-      virtual void               cancelOrdersForUser(const std::string& user)                                           = 0;
+      virtual void CancelOrdersForUser(const std::string_view user) = 0;
 
       // remove all orders in the cache for this security with qty >= minQty
-      virtual void               cancelOrdersForSecIdWithMinimumQty(const std::string& securityId, unsigned int minQty) = 0;
+      virtual void CancelOrdersForSecurityIdWithMinimumQty(const std::string_view security_id, const uint32_t min_qty) = 0;
 
       // return the total qty that can match for the security id
-      virtual unsigned int       getMatchingSizeForSecurity(const std::string& securityId)                              = 0;
+      virtual uint32_t GetMatchingSizeForSecurity(const std::string_view security_id) = 0;
 
       // return all orders in cache in a vector
-      virtual std::vector<Order> getAllOrders() const                                                                   = 0;
+      virtual const std::vector<Order>& GetAllOrders() const = 0;
+
+      // clang-format on
   };
 } // namespace TechnicalTest
 

@@ -1,7 +1,7 @@
 {
     "editor.insertSpaces": true,
     "editor.formatOnSave": true,
-    "editor.formatOnPaste": true,
+    "editor.formatOnPaste": false,
     "editor.tabSize": 2,
     "editor.useTabStops": true,
     "editor.tabCompletion": "on",
@@ -16,6 +16,36 @@
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         ".clang-format": "yaml",
-        "string_view": "cpp"
-    }
+        "string_view": "cpp",
+        "*.tcc": "cpp",
+        "cctype": "cpp",
+        "clocale": "cpp",
+        "cmath": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "cstdint": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "cwchar": "cpp",
+        "cwctype": "cpp",
+        "vector": "cpp",
+        "exception": "cpp",
+        "initializer_list": "cpp",
+        "iosfwd": "cpp",
+        "iostream": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "new": "cpp",
+        "numbers": "cpp",
+        "ostream": "cpp",
+        "stdexcept": "cpp",
+        "streambuf": "cpp",
+        "string": "cpp",
+        "system_error": "cpp",
+        "type_traits": "cpp",
+        "typeinfo": "cpp",
+        "array": "cpp",
+        "utility": "cpp"
+    },
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }

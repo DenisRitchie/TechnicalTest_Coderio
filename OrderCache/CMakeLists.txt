@@ -13,10 +13,14 @@ add_library(TechnicalTest::Library::OrderCache ALIAS OrderCache)
 target_sources(OrderCache
     PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/IOrderCache.hpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/OrderCache.hpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/OrderCache.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/OrderRepository.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/OrderRepository.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/OrderValidation.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/OrderValidation.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/Order.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/Order.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/Helpers.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/OrderException.hpp
 )
 
 target_compile_features(OrderCache PUBLIC c_std_11 cxx_std_17)
