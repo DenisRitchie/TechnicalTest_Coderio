@@ -20,7 +20,7 @@ namespace TechnicalTest
       void AddOrder(const Order& order);
 
       // verifies that the order by order id exists
-      bool ExistsOrderId(const std::string_view order_id) const noexcept;
+      bool ExistsOrderId(const std::string_view order_id) const;
 
       // remove order with this unique order id from the cache
       void CancelOrder(const std::string_view& order_id);
@@ -32,7 +32,7 @@ namespace TechnicalTest
       void CancelOrdersForSecurityIdWithMinimumQty(const std::string_view security_id, const uint32_t min_qty);
 
       // return the total qty that can match for the security id
-      uint32_t GetMatchingSizeForSecurity(const std::string_view security_id) const noexcept;
+      uint32_t GetMatchingSizeForSecurity(const std::string_view security_id) const;
 
       // return all orders in cache in a vector
       const std::vector<Order>& GetAllOrders() const noexcept;
@@ -41,7 +41,7 @@ namespace TechnicalTest
       size_t TotalOrders() const noexcept;
 
       // search for an order by id
-      std::optional<Order> FindOrderById(const std::string_view order_id) const noexcept;
+      std::optional<Order> FindOrderById(const std::string_view order_id) const;
 
       // clang-format on
 

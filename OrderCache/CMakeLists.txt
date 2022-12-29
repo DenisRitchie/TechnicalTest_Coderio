@@ -15,6 +15,8 @@ target_sources(OrderCache
         ${CMAKE_CURRENT_SOURCE_DIR}/IOrderCache.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/OrderRepository.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/OrderRepository.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/OrderService.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/OrderService.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/OrderValidation.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/OrderValidation.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/Order.hpp
@@ -22,6 +24,7 @@ target_sources(OrderCache
         ${CMAKE_CURRENT_SOURCE_DIR}/Helpers.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/Helpers.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/OrderException.hpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/OrderException.cpp
 )
 
 target_compile_features(OrderCache PUBLIC c_std_11 cxx_std_17)

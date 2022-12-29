@@ -12,7 +12,7 @@ struct OrderCacheFake : TechnicalTest::IOrderCache
     virtual void CancelOrder(const std::string_view& order_id) override;
     virtual void CancelOrdersForUser(const std::string_view user) override;
     virtual void CancelOrdersForSecurityIdWithMinimumQty(const std::string_view security_id, const uint32_t min_qty) override;
-    virtual uint32_t GetMatchingSizeForSecurity(const std::string_view security_id) override;
+    virtual uint32_t GetMatchingSizeForSecurity(const std::string_view security_id) const override;
     virtual const std::vector<TechnicalTest::Order>& GetAllOrders() const override;
     virtual size_t TotalOrders() const noexcept override;
     virtual std::optional<TechnicalTest::Order> FindOrderById(const std::string_view order_id) const noexcept override;

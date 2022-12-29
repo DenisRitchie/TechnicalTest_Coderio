@@ -25,7 +25,7 @@ void OrderCacheFake::CancelOrdersForSecurityIdWithMinimumQty([[maybe_unused]] co
 {
 }
 
-uint32_t OrderCacheFake::GetMatchingSizeForSecurity([[maybe_unused]] const std::string_view security_id)
+uint32_t OrderCacheFake::GetMatchingSizeForSecurity([[maybe_unused]] const std::string_view security_id) const
 {
   return 0;
 }

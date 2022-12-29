@@ -20,7 +20,7 @@ namespace TechnicalTest
     {
       throw OrderException(
           "Order model validation error.", //
-          std::move(const_cast<CreateOrderValidation::error_message_t&>(m_CreateOrderValidation.ErrorMessages()))
+          std::move(const_cast<CreateOrderValidation::error_message_t&>(m_CreateOrderValidation.Errors()))
       );
     }
   }
@@ -36,13 +36,13 @@ namespace TechnicalTest
     {
       throw OrderException(
           "Order model validation error.", //
-          std::move(const_cast<CreateOrderValidation::error_message_t&>(m_CreateOrderValidation.ErrorMessages()))
+          std::move(const_cast<CreateOrderValidation::error_message_t&>(m_CreateOrderValidation.Errors()))
       );
     }
   }
 
   // verifies that the order by order id exists
-  bool OrderService::ExistsOrderId(const std::string_view order_id) const noexcept
+  bool OrderService::ExistsOrderId(const std::string_view order_id) const
   {
     if ( order_id.empty() )
     {
@@ -86,7 +86,7 @@ namespace TechnicalTest
   }
 
   // return the total qty that can match for the security id
-  uint32_t OrderService::GetMatchingSizeForSecurity(const std::string_view security_id) const noexcept
+  uint32_t OrderService::GetMatchingSizeForSecurity(const std::string_view security_id) const
   {
     if ( security_id.empty() )
     {
@@ -109,7 +109,7 @@ namespace TechnicalTest
   }
 
   // search for an order by id
-  std::optional<Order> OrderService::FindOrderById(const std::string_view order_id) const noexcept
+  std::optional<Order> OrderService::FindOrderById(const std::string_view order_id) const
   {
     if ( order_id.empty() )
     {

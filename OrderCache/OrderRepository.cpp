@@ -107,7 +107,7 @@ namespace TechnicalTest
           - Some orders may not match entirely or at all
           - Users in the same company cannot match against each other
   */
-  uint32_t OrderRepository::GetMatchingSizeForSecurity(const std::string_view security_id)
+  uint32_t OrderRepository::GetMatchingSizeForSecurity(const std::string_view security_id) const
   {
     uint32_t                                            total_qty = 0;
     std::vector<std::tuple<std::string_view, uint32_t>> buys;

@@ -29,7 +29,7 @@ namespace TechnicalTest
       virtual void CancelOrdersForSecurityIdWithMinimumQty(const std::string_view security_id, const uint32_t min_qty) override;
 
       // return the total qty that can match for the security id
-      virtual uint32_t GetMatchingSizeForSecurity(const std::string_view security_id) override;
+      virtual uint32_t GetMatchingSizeForSecurity(const std::string_view security_id) const override;
 
       // return all orders in cache in a vector
       virtual const std::vector<Order>& GetAllOrders() const override;

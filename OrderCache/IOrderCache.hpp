@@ -35,7 +35,7 @@ namespace TechnicalTest
       virtual void CancelOrdersForSecurityIdWithMinimumQty(const std::string_view security_id, const uint32_t min_qty) = 0;
 
       // return the total qty that can match for the security id
-      virtual uint32_t GetMatchingSizeForSecurity(const std::string_view security_id) = 0;
+      virtual uint32_t GetMatchingSizeForSecurity(const std::string_view security_id) const = 0;
 
       // return all orders in cache in a vector
       virtual const std::vector<Order>& GetAllOrders() const = 0;

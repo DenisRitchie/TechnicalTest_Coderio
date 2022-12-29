@@ -10,6 +10,7 @@
 #include <memory>
 
 #include <OrderService.hpp>
+#include <OrderException.hpp>
 
 #include "OrderCacheFake.hpp"
 
@@ -115,6 +116,18 @@ TEST_F(OrderServiceTests, AddOrder_TestData3)
   {
     EXPECT_TRUE(m_Service3.ExistsOrderId("OrdId"s + std::to_string(index)));
   }
+}
+
+TEST_F(OrderServiceTests, AddOrder_Error)
+{
+  OrderService service;
+  EXPECT_THROW(service.AddOrder(Order{}), OrderException);
+  EXPECT_THROW(service.CancelOrder(""), OrderException);
+  EXPECT_THROW(service.CancelOrdersForSecurityIdWithMinimumQty("", 0), OrderException);
+  EXPECT_THROW(service.CancelOrdersForUser(""), OrderException);
+  EXPECT_THROW(service.ExistsOrderId(""), OrderException);
+  EXPECT_THROW(service.FindOrderById(""), OrderException);
+  EXPECT_THROW(service.GetMatchingSizeForSecurity(""), OrderException);
 }
 
 TEST_F(OrderServiceTests, CancelOrder)
